@@ -1,0 +1,71 @@
+/* Général */
+
+:root {
+  background-color: #242424;
+}
+
+body {
+  font-family: "Orbitron", sans-serif;
+}
+
+h2 {
+  color: #ffffff;
+}
+
+.container {
+  width: 1280px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.logo {
+  width: 200px;
+}
+
+.items-header {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 1280px;
+  margin: 0 auto;
+}
+.nav {
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+/* Cards comics and characters */
+
+.flex-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.card {
+  flex: calc(20% - 1rem);
+  height: 350px;
+  border: solid 1px #d40317;
+  height: 500px;
+  cursor: pointer;
+}
+
+.card-infos {
+  height: 20%;
+  align-items: center;
+}
+
+.card-infos > h2 {
+  padding: 10px;
+}
+.img-card {
+  height: 80%;
+}
+
+.img-card > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
