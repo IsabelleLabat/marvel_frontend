@@ -1,4 +1,5 @@
 import Logo from "../assets/Img/logo_marvel.png";
+
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -6,7 +7,9 @@ const Header = () => {
     <header>
       <div className="items-header">
         <div>
-          <img className="logo" src={Logo} alt="logo" />
+          <Link to={"/"}>
+            <img className="logo" src={Logo} alt="logo" />
+          </Link>
         </div>
         <div>
           <Link className="nav" to={"/comics"}>
