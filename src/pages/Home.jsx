@@ -1,9 +1,9 @@
-import Banner from "../assets/Img/banner.webp";
+import Spiderman from "../assets/Img/spiderman.png";
 const Home = () => {
   return (
     <main className="home">
-      <img className="banner" src={Banner} alt="home banner" />
-      <h1>Bienvenue dans l'univers Marvel</h1>
+      <img className="banner" src={Spiderman} alt="home banner" />
+      <h1>Welcome in MARVEL UNIVERSE</h1>
     </main>
   );
 };

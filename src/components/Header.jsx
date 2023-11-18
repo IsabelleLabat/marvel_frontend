@@ -18,6 +18,9 @@ const Header = () => {
           <Link className="nav" to={"/characters"}>
             CHARACTERS
           </Link>
+          <Link className="nav" to={"/favorites"}>
+            FAVORITES
+          </Link>
         </div>
       </div>
     </header>

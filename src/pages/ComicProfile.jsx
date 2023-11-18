@@ -40,6 +40,7 @@ const ComicProfile = () => {
           <h2>{data.data.title}</h2>
           <div className="divider"></div>
           <p className="description">{data.data.description}</p>
+          <button className="favorites-button">Add to my favorites</button>
         </div>
       </div>
     </main>

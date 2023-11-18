@@ -1,7 +1,7 @@
 /* Général */
 
 :root {
-  background-color: #242424;
+  background-color: #292c4e;
 }
 
 body {
@@ -9,12 +9,9 @@ body {
 }
 
 .home > h1 {
-  color: #d40317;
+  color: #ffffff;
   font-weight: 600;
   font-size: 50px;
-  position: absolute;
-  bottom: 60px;
-  left: 300px;
 }
 
 h2 {
@@ -24,19 +21,23 @@ h2 {
 .container {
   width: 1280px;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .logo {
-  width: 200px;
+  width: 150px;
+  z-index: 1;
+}
+
+input {
+  color: white;
 }
 
 .items-header {
   padding-top: 20px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
   width: 1280px;
   margin: 0 auto;
 }
@@ -51,23 +52,32 @@ h2 {
   height: 100px;
 }
 .search-input {
-  margin: 0 auto;
   width: 400px;
   height: 50px;
   border-radius: 40px;
   border: 1px solid rgb(99, 99, 99);
-  text-align: center;
-  background-color: #242424;
+  padding-left: 20px;
+  background-color: #292c4e;
+  font-family: "Orbitron", sans-serif;
+}
+
+::placeholder {
+  color: #ffffff;
 }
 
 /* Home */
-
+.home {
+  display: flex;
+  align-items: center;
+  background-color: rgba(37, 37, 37, 0.317);
+  height: 40vh;
+  margin-top: 100px;
+}
 .banner {
-  width: 100%;
-  height: 100%;
+  height: 700px;
   object-fit: cover;
-  margin-top: 30px;
-  position: relative;
+  margin-top: 20px;
+  z-index: 0;
 }
 
 /* Cards comics and characters */
@@ -79,11 +89,11 @@ h2 {
 }
 .card {
   flex: calc(20% - 1rem);
-  border: 1px solid rgba(99, 99, 99, 0.525);
+  /* border: 1px solid rgba(99, 99, 99, 0.525); */
   border-radius: 20px;
   height: 300px;
   cursor: pointer;
-  box-shadow: 5px 2px 2px rgba(255, 0, 0, 0.324);
+
   text-decoration: none;
   transition: all 0.2s;
 }
@@ -97,6 +107,10 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
+  /* background-color: #040d3c; */
+  background-color: #a81003;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 .card-infos > h2 {
@@ -114,7 +128,7 @@ h2 {
   border-bottom-left-radius: 20px;
 }
 
-/* Page profile */
+/* Page individual profile */
 
 .profile-card {
   display: flex;
@@ -124,6 +138,7 @@ h2 {
 
 .profile-card img {
   width: 400px;
+  border-radius: 20px;
 }
 .profile-card h2 {
   font-size: 50px;
@@ -133,6 +148,7 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  flex: 2;
 }
 
 .description {
@@ -142,9 +158,12 @@ h2 {
 
 .character-comic {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   width: 1280px;
   flex-wrap: wrap;
-  justify-content: center;
+  border: solid 1px pink;
+  margin-top: 20px;
 }
 
 .divider {
@@ -159,16 +178,21 @@ h2 {
 .test {
   width: 20%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  align-items: center;
 }
 
-.character-comic img {
+.comic-list-title {
+  font-size: 30px;
+  margin-top: 100px;
+}
+
+.favorites-button {
+  margin-top: 20px;
   width: 200px;
-}
-
-.comic-infos {
-  align-items: center;
+  height: 50px;
+  border-radius: 40px;
+  background-color: #d40317;
+  text-align: center;
+  border: none;
+  font-family: "Orbitron", sans-serif;
+  color: #ffffff;
 }

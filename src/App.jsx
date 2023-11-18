@@ -10,6 +10,7 @@ import Characters from "./pages/Characters";
 import Home from "./pages/Home";
 import CharacterProfile from "./pages/CharacterProfile";
 import ComicProfile from "./pages/ComicProfile";
+import Favorites from "./pages/Favorites";
 
 // Components
 import Header from "./components/Header";
@@ -30,6 +31,8 @@ function App() {
           path="/character/:characterId"
           element={<CharacterProfile />}
         ></Route>
+
+        <Route path="/favorites" element={<Favorites />}></Route>
       </Routes>
     </Router>
   );
