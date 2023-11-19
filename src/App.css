@@ -404,10 +404,31 @@ input {
 
     .items-header {
       flex-direction: column;
+      align-content: center;
       gap: 20px;
     }
     .fade-in-text > h1 {
       font-size: 30px;
+    }
+  }
+
+  @media (max-width: 585px) {
+    .container {
+      width: 400px;
+    }
+
+    .items-header {
+      width: 400px;
+      align-content: center;
+    }
+
+    .home {
+      flex-direction: column;
+    }
+
+    .banner {
+      margin-top: -60px;
+      height: 420px;
     }
   }
 }
