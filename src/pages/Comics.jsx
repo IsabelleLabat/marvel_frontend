@@ -24,7 +24,7 @@ const Comics = () => {
   }, [searchTerm]);
 
   return isLoading ? (
-    <span>En cours de chargement</span>
+    <div className="loading">En cours de chargement</div>
   ) : (
     <main className="container">
       <div className="search-container">

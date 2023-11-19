@@ -4,6 +4,12 @@
   background-color: #292c4e;
 }
 
+.loading {
+  color: white;
+  margin-top: 100px;
+  text-align: center;
+}
+
 body {
   font-family: "Orbitron", sans-serif;
 }
@@ -410,6 +416,15 @@ input {
     .fade-in-text > h1 {
       font-size: 30px;
     }
+
+    .profile-card {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .card-individual {
+      flex: calc(40% - 1rem);
+    }
   }
 
   @media (max-width: 585px) {
@@ -429,6 +444,18 @@ input {
     .banner {
       margin-top: -60px;
       height: 420px;
+    }
+
+    .fade-in-text > h1 {
+      text-align: center;
+    }
+
+    .card-individual {
+      flex: calc(100%);
+    }
+
+    .card {
+      flex: calc(100% - 1rem);
     }
   }
 }
