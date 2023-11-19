@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import star from "../assets/Img/star.png";
 
 const Characters = () => {
   const [data, setData] = useState();
@@ -37,6 +38,12 @@ const Characters = () => {
             setSearchTerm(event.target.value);
           }}
         />
+      </div>
+
+      <div className="title">
+        <img className="star" src={star} alt="" />
+        <h1>CHARACTERS</h1>
+        <img className="star" src={star} alt="" />
       </div>
 
       <div className="flex-card">

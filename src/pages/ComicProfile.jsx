@@ -24,6 +24,35 @@ const ComicProfile = () => {
     };
     fetchData();
   }, [comicId]);
+  const [favorites, setFavorites] = useState([]);
+
+  useEffect(() => {
+    // Get favorites from localStorage
+    const comicFavorites = JSON.parse(
+      localStorage.getItem("comicFavorites") || "[]"
+    );
+    setFavorites({ ...comicFavorites });
+  }, []);
+
+  const handleToggleFavorite = (id, details) => {
+    // Get existing favorites from localStorage
+    const existingFavorites =
+      JSON.parse(localStorage.getItem("comicFavorites")) || "[]";
+
+    // Toggle the favorite status
+    const updatedFavorites = { ...existingFavorites };
+    if (updatedFavorites[id]) {
+      // Remove the comic from favorites
+      delete updatedFavorites[id];
+    } else {
+      // Add the comic to favorites with additional details
+      updatedFavorites[id] = { ...details };
+    }
+
+    // Update state and localStorage
+    setFavorites(updatedFavorites);
+    localStorage.setItem("comicFavorites", JSON.stringify(updatedFavorites));
+  };
 
   return isLoading ? (
     <span>En cours de chargement</span>
@@ -40,7 +69,21 @@ const ComicProfile = () => {
           <h2>{data.data.title}</h2>
           <div className="divider"></div>
           <p className="description">{data.data.description}</p>
-          <button className="favorites-button">Add to my favorites</button>
+          <button
+            className="favorites-button"
+            onClick={() =>
+              handleToggleFavorite(data.data.comidId, {
+                title: data.data.title,
+                description: data.data.description,
+                thumbnail: {
+                  path: data.data.thumbnail.path,
+                  extension: data.data.thumbnail.extension,
+                },
+              })
+            }
+          >
+            Add to my favorites
+          </button>
         </div>
       </div>
     </main>

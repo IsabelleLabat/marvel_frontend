@@ -8,7 +8,7 @@ body {
   font-family: "Orbitron", sans-serif;
 }
 
-.home > h1 {
+.fade-in-text > h1 {
   color: #ffffff;
   font-weight: 600;
   font-size: 50px;
@@ -32,20 +32,6 @@ h2 {
 input {
   color: white;
 }
-
-.items-header {
-  padding-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 1280px;
-  margin: 0 auto;
-}
-.nav {
-  padding: 10px;
-  color: white;
-  text-decoration: none;
-}
 .search-container {
   display: flex;
   align-items: center;
@@ -65,6 +51,65 @@ input {
   color: #ffffff;
 }
 
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+  gap: 30px;
+}
+
+.star {
+  width: 30px;
+}
+
+.title > h1 {
+  color: #ffffff;
+  font-size: 40px;
+}
+
+/* header */
+
+.items-header {
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 1280px;
+  margin: 0 auto;
+}
+.nav {
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+  position: relative;
+}
+
+.nav::before {
+  transform: scaleX(0);
+  transform-origin: bottom right;
+}
+
+.nav:hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.nav::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  inset: 0 0 0 0;
+  background: #a81003;
+  border-radius: 5px;
+  z-index: -1;
+  transition: transform 0.3s ease;
+}
+
 /* Home */
 .home {
   display: flex;
@@ -79,7 +124,65 @@ input {
   margin-top: 20px;
   z-index: 0;
 }
+.fade-in-image,
+.fade-in-text {
+  animation: fadeIn 5s;
+  -webkit-animation: fadeIn 5s;
+  -moz-animation: fadeIn 5s;
+  -o-animation: fadeIn 5s;
+  -ms-animation: fadeIn 5s;
+}
+.fade-in-text {
+  animation: fadeIn 12s;
+  -webkit-animation: fadeIn 12s;
+  -moz-animation: fadeIn120s;
+  -o-animation: fadeIn 12s;
+  -ms-animation: fadeIn 12s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 /* Cards comics and characters */
 
 .flex-card {
@@ -185,6 +288,8 @@ input {
   margin-top: 100px;
 }
 
+/* Favorites page */
+
 .favorites-button {
   margin-top: 20px;
   width: 200px;
@@ -195,4 +300,114 @@ input {
   border: none;
   font-family: "Orbitron", sans-serif;
   color: #ffffff;
+  cursor: pointer;
+}
+
+.card-favorite {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.card-individual {
+  flex: calc(20% - 1rem);
+  justify-content: center;
+  align-items: center;
+  /* background-color: #040d3c; */
+  background-color: #a81003;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.favorite-card h2 {
+  font-size: 20px;
+}
+.favorite-card p {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.2rem;
+  color: #ffffff;
+}
+
+.divider-favorite {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background: rgb(42, 34, 37);
+  display: block;
+  height: 1px;
+  width: 100%;
+}
+
+/* Media queries */
+
+@media (max-width: 1315px) {
+  .container {
+    width: 1000px;
+  }
+
+  .items-header {
+    width: 1000px;
+  }
+
+  .card {
+    flex: calc(30% - 1rem);
+  }
+}
+
+@media (max-width: 1030px) {
+  .container {
+    width: 900px;
+  }
+
+  .items-header {
+    width: 900px;
+  }
+  .search-container {
+    justify-content: center;
+  }
+
+  .banner {
+    height: 500px;
+  }
+
+  .title > h1 {
+    font-size: 40px;
+  }
+  .fade-in-text > h1 {
+    font-size: 40px;
+  }
+  @media (max-width: 900px) {
+    .container {
+      width: 700px;
+    }
+
+    .items-header {
+      width: 700px;
+    }
+    .title > h1 {
+      font-size: 30px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .container {
+      width: 500px;
+    }
+
+    .items-header {
+      width: 500px;
+    }
+
+    .card {
+      flex: calc(50% - 1rem);
+    }
+
+    .items-header {
+      flex-direction: column;
+      gap: 20px;
+    }
+    .fade-in-text > h1 {
+      font-size: 30px;
+    }
+  }
 }

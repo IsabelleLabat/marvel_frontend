@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import star from "../assets/Img/star.png";
 
 const addEllipsis = (text, maxLength) => {
   return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
@@ -37,7 +38,11 @@ const Comics = () => {
           }}
         />
       </div>
-
+      <div className="title">
+        <img className="star" src={star} alt="" />
+        <h1>COMICS</h1>
+        <img className="star" src={star} alt="" />
+      </div>
       <div className="flex-card">
         {data.data.results.map((result) => {
           return (
