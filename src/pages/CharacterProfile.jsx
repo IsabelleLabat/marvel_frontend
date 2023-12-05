@@ -21,7 +21,7 @@ const CharacterProfile = () => {
         const responseCharacter = await axios.get(
           `https://site--marvel-backend--7zwqb2nbgsj7.code.run/character/${characterId}`
         );
-        console.log(responseCharacter.data);
+        // console.log(responseCharacter.data);
         setData(responseCharacter.data);
 
         const responseComicCharacter = await axios.get(
@@ -49,13 +49,12 @@ const CharacterProfile = () => {
     setFavorites({ ...characterFavorites });
   }, []);
 
-  console.log(favorites);
+  // console.log(favorites);
 
   const handleToggleFavorite = (id, details) => {
     // Get existing favorites from localStorage
     const existingFavorites =
       JSON.parse(localStorage.getItem("characterFavorites")) || {};
-
     // Toggle the favorite status
     const updatedFavorites = { ...existingFavorites };
     if (updatedFavorites[id]) {
@@ -65,13 +64,16 @@ const CharacterProfile = () => {
       // Add the character to favorites with additional details
       updatedFavorites[id] = { ...details };
     }
-
     // Update state and localStorage
     setFavorites(updatedFavorites);
     localStorage.setItem(
       "characterFavorites",
       JSON.stringify(updatedFavorites)
     );
+
+    console.log(id);
+    console.log(details);
+    console.log(localStorage);
   };
 
   return isLoading ? (
@@ -92,7 +94,7 @@ const CharacterProfile = () => {
           <button
             className="favorites-button"
             onClick={() =>
-              handleToggleFavorite(data.data.characterId, {
+              handleToggleFavorite(data.data._id, {
                 // id: characterId,
                 name: data.data.name,
                 description: data.data.description,

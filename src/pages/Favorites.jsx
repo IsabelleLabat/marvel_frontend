@@ -28,10 +28,10 @@ const Favorites = () => {
           {Object.keys(favorites).map((id) => (
             <div className="card-individual" key={id}>
               <div className="favorite-card">
-                {/* <img
+                <img
                   src={`${favorites[id].thumbnail.path}.${favorites[id].thumbnail.extension}`}
                   alt={favorites[id].name}
-                /> */}
+                />
                 <h2>{favorites[id].name}</h2>
                 <div className="divider-favorite"></div>
                 <p>{favorites[id].description}</p>
