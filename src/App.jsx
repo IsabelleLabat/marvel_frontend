@@ -10,6 +10,8 @@ import Home from "./pages/Home";
 import CharacterProfile from "./pages/CharacterProfile";
 import ComicProfile from "./pages/ComicProfile";
 import Favorites from "./pages/Favorites";
+import SignUp from "./pages/Signup";
+import Login from "./pages/Login";
 
 // Components
 import Header from "./components/Header";
@@ -32,6 +34,8 @@ function App() {
         ></Route>
 
         <Route path="/favorites" element={<Favorites />}></Route>
+        <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/login" element={<Login />}></Route>
       </Routes>
     </Router>
   );
