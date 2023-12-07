@@ -33,8 +33,9 @@ const Login = ({ handleToken }) => {
 
       console.log(response);
 
-      handleToken(response.token);
+      handleToken(response.data.token);
       navigate("/favorites");
+      //   console.log(navigate);
     } catch (error) {
       if (error.message === "Missing parameters") {
         setErrorMessage("Merci de remplir tous les champs");
@@ -54,7 +55,7 @@ const Login = ({ handleToken }) => {
       </div>
 
       <input
-        className="signup-input"
+        className="search-input"
         id="email"
         type="text"
         placeholder="Email"
@@ -64,7 +65,7 @@ const Login = ({ handleToken }) => {
       />
 
       <input
-        className="signup-input"
+        className="search-input"
         id="password"
         type="password"
         placeholder="Mot de Passe"
@@ -73,11 +74,7 @@ const Login = ({ handleToken }) => {
         onChange={handlePasswordChange}
       />
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-      <input
-        className="signin-submitButton"
-        type="submit"
-        value="Se connecter"
-      />
+      <input className="search-input" type="submit" value="Se connecter" />
     </form>
   );
 };

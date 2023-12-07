@@ -1,21 +1,26 @@
 import { useState, useEffect } from "react";
 import star from "../assets/Img/star.png";
 
-// import { Link } from "react-router-dom";
+import axios from "axios";
 
+// import { Link } from "react-router-dom";
 const Favorites = () => {
-  const [favorites, setFavorites] = useState([]);
+  const [fav, setFav] = useState([]);
   useEffect(() => {
-    // Get favorites from localStorage
-    const characterFavorites = JSON.parse(
-      localStorage.getItem("characterFavorites") || "[]"
-    );
-    const comicFavorites = JSON.parse(
-      localStorage.getItem("comicFavorites") || "[]"
-    );
-    setFavorites({ ...characterFavorites, ...comicFavorites });
+    const fetchData = async () => {
+      try {
+        const responseFavorite = await axios.get(
+          "http://localhost:3000/favorites"
+        );
+        setFav(responseFavorite.data);
+      } catch (error) {
+        console.log(error.response.data);
+      }
+    };
+    fetchData();
   }, []);
-  console.log(favorites);
+
+  console.log(fav);
   return (
     <div className="container">
       <div className="title">
@@ -25,16 +30,16 @@ const Favorites = () => {
       </div>
       <div>
         <div className="card-favorite">
-          {Object.keys(favorites).map((id) => (
+          {Object.keys(fav).map((id) => (
             <div className="card-individual" key={id}>
               <div className="favorite-card">
                 <img
-                  src={`${favorites[id].thumbnail.path}.${favorites[id].thumbnail.extension}`}
-                  alt={favorites[id].name}
+                  src={`${fav[id].thumbnail.path}.${fav[id].thumbnail.extension}`}
+                  alt={fav[id].name}
                 />
-                <h2>{favorites[id].name}</h2>
+                <h2>{fav[id].name}</h2>
                 <div className="divider-favorite"></div>
-                <p>{favorites[id].description}</p>
+                <p>{fav[id].description}</p>
               </div>
             </div>
           ))}
@@ -43,4 +48,5 @@ const Favorites = () => {
     </div>
   );
 };
+
 export default Favorites;

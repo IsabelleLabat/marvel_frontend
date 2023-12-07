@@ -9,11 +9,7 @@ const CharacterProfile = () => {
   const [dataComic, setDataComic] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const { characterId } = useParams();
-
-  // const addFavoritesCharacter = (id) => {
-  //   const newFavoritesList = [...favorites, id];
-  //   setFavorites(newFavoritesList);
-  // };
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,42 +34,25 @@ const CharacterProfile = () => {
     };
     fetchData();
   }, [characterId]);
-  const [favorites, setFavorites] = useState([]);
 
-  useEffect(() => {
-    // Get favorites from localStorage
-    const characterFavorites = JSON.parse(
-      localStorage.getItem("characters") || "[]"
-    );
-
-    setFavorites({ ...characterFavorites });
-  }, []);
-
-  // console.log(favorites);
-
-  const handleToggleFavorite = (id, details) => {
-    // Get existing favorites from localStorage
-    const existingFavorites =
-      JSON.parse(localStorage.getItem("characterFavorites")) || {};
-    // Toggle the favorite status
-    const updatedFavorites = { ...existingFavorites };
-    if (updatedFavorites[id]) {
-      // Remove the character from favorites
-      delete updatedFavorites[id];
-    } else {
-      // Add the character to favorites with additional details
-      updatedFavorites[id] = { ...details };
-    }
-    // Update state and localStorage
-    setFavorites(updatedFavorites);
-    localStorage.setItem(
-      "characterFavorites",
-      JSON.stringify(updatedFavorites)
-    );
-
-    console.log(id);
-    console.log(details);
-    console.log(localStorage);
+  const handleToggleFavorite = async (id) => {
+    const fetchData = async () => {
+      try {
+        const favorites = await axios.get("http://localhost:3000/favorites", {
+          itemId: {
+            name: data.data.name,
+            path: data.data.thumbnail.path,
+            extension: data.data.thumbnail.extension,
+            title: "",
+          },
+        });
+        setFavorites(favorites.data);
+        console.log(favorites.data);
+      } catch (error) {
+        console.log(error.response.data);
+      }
+    };
+    fetchData();
   };
 
   return isLoading ? (
@@ -95,7 +74,6 @@ const CharacterProfile = () => {
             className="favorites-button"
             onClick={() =>
               handleToggleFavorite(data.data._id, {
-                // id: characterId,
                 name: data.data.name,
                 description: data.data.description,
                 thumbnail: {

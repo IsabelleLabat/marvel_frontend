@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import { useState } from "react";
+
 import "./App.css";
+import Cookies from "js-cookie";
+import { useState } from "react";
 
 // Pages
 
@@ -17,9 +19,32 @@ import Login from "./pages/Login";
 import Header from "./components/Header";
 
 function App() {
+  // State dans lequel je stocke le token. Sa valeur de base sera :
+  // - Si je trouve un cookie token, ce cookie
+  // - Sinon, null
+  const [token, setToken] = useState(
+    Cookies.get("token") || null
+    // Cookies.get("token") ? Cookies.get("token") : null
+  );
+  const [idUser, setIdUser] = useState(Cookies.get("idUser") || null);
+
+  // Cette fonction permet de stocker le token dans le state et dans les cookies ou supprimer le token dans le state et dans les cookies
+  const handleToken = (token, idUser) => {
+    if (token) {
+      Cookies.set("token", token, { expires: 15 });
+      Cookies.set("idUser", idUser, { expires: 15 });
+      setToken(token);
+      setIdUser(idUser);
+    } else {
+      Cookies.remove("token");
+      Cookies.remove("idUser");
+      setToken(null);
+      setIdUser(null);
+    }
+  };
   return (
     <Router>
-      <Header />
+      <Header token={token} handleToken={handleToken} idUser={idUser} />
       <Routes>
         <Route path="/" element={<Home />}></Route>
 
@@ -33,9 +58,18 @@ function App() {
           element={<CharacterProfile />}
         ></Route>
 
-        <Route path="/favorites" element={<Favorites />}></Route>
-        <Route path="/signup" element={<SignUp />}></Route>
-        <Route path="/login" element={<Login />}></Route>
+        <Route
+          path="/favorites"
+          element={<Favorites token={token} idUser={idUser} />}
+        ></Route>
+        <Route
+          path="/signup"
+          element={<SignUp handleToken={handleToken} idUser={idUser} />}
+        ></Route>
+        <Route
+          path="/login"
+          element={<Login handleToken={handleToken} idUser={idUser} />}
+        ></Route>
       </Routes>
     </Router>
   );

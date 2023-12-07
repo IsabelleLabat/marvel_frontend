@@ -11,8 +11,6 @@ const Signup = ({ handleToken }) => {
   const [name, setName] = useState("");
   const [picture, setPicture] = useState();
 
-  const [newsletter, setNewsletter] = useState(false);
-
   //   State qui gère le message d'erreur
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -47,7 +45,7 @@ const Signup = ({ handleToken }) => {
       formData.append("username", name);
       formData.append("password", password);
       formData.append("picture", picture);
-      formData.append("newsletter", newsletter);
+
       //   Requête axios :
       // - Premier argument : l'url que j'interroge
       // - deuxième : le body que j'envoi
