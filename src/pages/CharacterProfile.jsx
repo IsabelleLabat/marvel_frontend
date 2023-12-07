@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 import axios from "axios";
 
-const CharacterProfile = () => {
+const CharacterProfile = ({ token }) => {
   const [data, setData] = useState();
   const [dataComic, setDataComic] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -36,24 +36,31 @@ const CharacterProfile = () => {
   }, [characterId]);
 
   const handleToggleFavorite = (id) => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:3000/favorites", {
-          itemId: {
-            id: data.data._id,
-            name: data.data.name,
-            path: data.data.thumbnail.path,
-            extension: data.data.thumbnail.extension,
-            title: "",
-          },
-        });
-        setFavorites(response.data.favorites);
-        console.log(response.data.favorites);
-      } catch (error) {
-        console.log(error.response.data);
-      }
-    };
-    fetchData();
+    if (token) {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get("http://localhost:3000/favorites", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            itemId: {
+              id: data.data._id,
+              name: data.data.name,
+              path: data.data.thumbnail.path,
+              extension: data.data.thumbnail.extension,
+            },
+          });
+          console.log(response.data.itemId);
+          setFavorites(response.data.itemId);
+          console.log(response.data.favorites);
+        } catch (error) {
+          console.log(error.response.data);
+        }
+      };
+      fetchData();
+    } else {
+      alert("You must be connected to add favorites");
+    }
   };
 
   return isLoading ? (
@@ -74,13 +81,11 @@ const CharacterProfile = () => {
           <button
             className="favorites-button"
             onClick={() =>
-              handleToggleFavorite(data.data._id, {
+              handleToggleFavorite({
+                itemId: data.data._id,
                 name: data.data.name,
-                description: data.data.description,
-                thumbnail: {
-                  path: data.data.thumbnail.path,
-                  extension: data.data.thumbnail.extension,
-                },
+                path: data.data.thumbnail.path,
+                extension: data.data.thumbnail.extension,
               })
             }
           >

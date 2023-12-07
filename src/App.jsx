@@ -55,7 +55,7 @@ function App() {
         <Route path="/characters" element={<Characters />}></Route>
         <Route
           path="/character/:characterId"
-          element={<CharacterProfile />}
+          element={<CharacterProfile token={token} idUser={idUser} />}
         ></Route>
 
         <Route
