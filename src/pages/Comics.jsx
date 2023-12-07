@@ -13,12 +13,16 @@ const Comics = () => {
   const [searchTerm, setSearchTerm] = useState("");
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(
-        `https://site--marvel-backend--7zwqb2nbgsj7.code.run/comics?limit=100&skip=0}&title=${searchTerm}`
-      );
-      //   console.log(response.data);
-      setData(response.data);
-      setIsLoading(false);
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/comics?limit=100&skip=0&title=${searchTerm}`
+        );
+        console.log(response.data);
+        setData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error.response.data);
+      }
     };
     fetchData();
   }, [searchTerm]);

@@ -12,9 +12,9 @@ const Characters = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://site--marvel-backend--7zwqb2nbgsj7.code.run/characters?limit=100&skip=0}&name=${searchTerm}`
+          `http://localhost:3000/characters?limit=100&skip=0&name=${searchTerm}`
         );
-        //   console.log(response.data);
+        console.log(response.data);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {

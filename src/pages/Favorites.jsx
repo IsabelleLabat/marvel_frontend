@@ -9,10 +9,9 @@ const Favorites = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const responseFavorite = await axios.get(
-          "http://localhost:3000/favorites"
-        );
-        setFav(responseFavorite.data);
+        const response = await axios.get("http://localhost:3000/favorites");
+        setFav(response.data.favorites);
+        console.log(response.data.favorites);
       } catch (error) {
         console.log(error.response.data);
       }
@@ -20,7 +19,6 @@ const Favorites = () => {
     fetchData();
   }, []);
 
-  console.log(fav);
   return (
     <div className="container">
       <div className="title">
@@ -30,16 +28,16 @@ const Favorites = () => {
       </div>
       <div>
         <div className="card-favorite">
-          {Object.keys(fav).map((id) => (
+          {fav.map((id) => (
             <div className="card-individual" key={id}>
               <div className="favorite-card">
-                <img
+                {/* <img
                   src={`${fav[id].thumbnail.path}.${fav[id].thumbnail.extension}`}
                   alt={fav[id].name}
-                />
-                <h2>{fav[id].name}</h2>
+                /> */}
+                <h2>{fav.name}</h2>
                 <div className="divider-favorite"></div>
-                <p>{fav[id].description}</p>
+                <p>{fav.description}</p>
               </div>
             </div>
           ))}

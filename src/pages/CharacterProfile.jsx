@@ -15,13 +15,13 @@ const CharacterProfile = () => {
     const fetchData = async () => {
       try {
         const responseCharacter = await axios.get(
-          `https://site--marvel-backend--7zwqb2nbgsj7.code.run/character/${characterId}`
+          `http://localhost:3000/character/${characterId}`
         );
         // console.log(responseCharacter.data);
         setData(responseCharacter.data);
 
         const responseComicCharacter = await axios.get(
-          `https://site--marvel-backend--7zwqb2nbgsj7.code.run/comics/${characterId}`
+          `http://localhost:3000/comics/${characterId}`
         );
 
         setDataComic(responseComicCharacter.data);
@@ -35,19 +35,20 @@ const CharacterProfile = () => {
     fetchData();
   }, [characterId]);
 
-  const handleToggleFavorite = async (id) => {
+  const handleToggleFavorite = (id) => {
     const fetchData = async () => {
       try {
-        const favorites = await axios.get("http://localhost:3000/favorites", {
+        const response = await axios.get("http://localhost:3000/favorites", {
           itemId: {
+            id: data.data._id,
             name: data.data.name,
             path: data.data.thumbnail.path,
             extension: data.data.thumbnail.extension,
             title: "",
           },
         });
-        setFavorites(favorites.data);
-        console.log(favorites.data);
+        setFavorites(response.data.favorites);
+        console.log(response.data.favorites);
       } catch (error) {
         console.log(error.response.data);
       }
