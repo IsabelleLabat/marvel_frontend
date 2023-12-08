@@ -14,14 +14,14 @@ const Favorites = ({ token }) => {
             Authorization: `Bearer ${token}`,
           },
         });
-        setFav(response.config.itemId);
+        setFav(response.data.itemId);
         console.log(response.data.itemId);
       } catch (error) {
         console.log(error.response.data);
       }
     };
     fetchData();
-  }, []);
+  });
 
   return (
     <div className="container">

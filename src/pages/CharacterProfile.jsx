@@ -9,7 +9,7 @@ const CharacterProfile = ({ token }) => {
   const [dataComic, setDataComic] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const { characterId } = useParams();
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,7 +39,7 @@ const CharacterProfile = ({ token }) => {
     if (token) {
       const fetchData = async () => {
         try {
-          const response = await axios.get("http://localhost:3000/favorites", {
+          const response = await axios.post("http://localhost:3000/favorites", {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -50,9 +50,9 @@ const CharacterProfile = ({ token }) => {
               extension: data.data.thumbnail.extension,
             },
           });
-          console.log(response.data.itemId);
-          setFavorites(response.data.itemId);
-          console.log(response.data.favorites);
+
+          setFavorites(response.data.favorites);
+          console.log(favorites);
         } catch (error) {
           console.log(error.response.data);
         }
@@ -82,10 +82,12 @@ const CharacterProfile = ({ token }) => {
             className="favorites-button"
             onClick={() =>
               handleToggleFavorite({
-                itemId: data.data._id,
-                name: data.data.name,
-                path: data.data.thumbnail.path,
-                extension: data.data.thumbnail.extension,
+                itemId: {
+                  id: data.data._id,
+                  name: data.data.name,
+                  path: data.data.thumbnail.path,
+                  extension: data.data.thumbnail.extension,
+                },
               })
             }
           >

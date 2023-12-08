@@ -33,6 +33,7 @@ function App() {
     if (token) {
       Cookies.set("token", token, { expires: 15 });
       Cookies.set("idUser", idUser, { expires: 15 });
+
       setToken(token);
       setIdUser(idUser);
     } else {
@@ -55,20 +56,36 @@ function App() {
         <Route path="/characters" element={<Characters />}></Route>
         <Route
           path="/character/:characterId"
-          element={<CharacterProfile token={token} idUser={idUser} />}
+          element={
+            <CharacterProfile
+              token={token}
+              handleToken={handleToken}
+              idUser={idUser}
+            />
+          }
         ></Route>
 
         <Route
           path="/favorites"
-          element={<Favorites token={token} idUser={idUser} />}
+          element={
+            <Favorites
+              token={token}
+              handleToken={handleToken}
+              idUser={idUser}
+            />
+          }
         ></Route>
         <Route
           path="/signup"
-          element={<SignUp handleToken={handleToken} idUser={idUser} />}
+          element={
+            <SignUp token={token} handleToken={handleToken} idUser={idUser} />
+          }
         ></Route>
         <Route
           path="/login"
-          element={<Login handleToken={handleToken} idUser={idUser} />}
+          element={
+            <Login handleToken={handleToken} token={token} idUser={idUser} />
+          }
         ></Route>
       </Routes>
     </Router>

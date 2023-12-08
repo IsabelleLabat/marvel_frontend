@@ -56,7 +56,7 @@ const Signup = ({ handleToken }) => {
         //   email: email,
         //   username: name,
         //   password: password,
-        //   newsletter: Boolean,
+
         // }
       );
       //   console.log(data);
@@ -65,7 +65,8 @@ const Signup = ({ handleToken }) => {
 
       //   Cookies.set("token", response.data.token, { expires: 15 });
       // J'enregistre le token dans mon state et mes cookies
-      handleToken(response.data.token);
+      handleToken(response.data.token, response.data.idUser);
+
       // Cookies.set("token", response.data.token, { expires: 15 });
       // Je navigue vers ma page /
       navigate("/");
